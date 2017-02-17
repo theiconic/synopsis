@@ -1,6 +1,6 @@
 <?php
 
-namespace TheIconic\Synopsis\Object;
+namespace TheIconic\Synopsis\Resource;
 
 use TheIconic\Synopsis\ResourceSynopsis;
 
@@ -11,4 +11,17 @@ use TheIconic\Synopsis\ResourceSynopsis;
  */
 class StreamSynopsis extends ResourceSynopsis
 {
+    /**
+     * @param $value
+     * @param $depth
+     */
+    public function process($value, $depth)
+    {
+        parent::process($value, $depth);
+
+        $meta = stream_get_meta_data($value);
+
+        $this->value = $meta['uri'];
+        $this->length = strlen($this->value);
+    }
 }

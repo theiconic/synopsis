@@ -11,7 +11,6 @@ use TheIconic\Synopsis\ObjectSynopsis;
  */
 class TransferObjectSynopsis extends ObjectSynopsis
 {
-
     /**
      * @see parent::process()
      * @param $value

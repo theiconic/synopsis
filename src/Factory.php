@@ -11,28 +11,27 @@ use Exception;
  */
 class Factory
 {
-
     /**
      * @var array mappings from value classes to synopsis classes
      */
-    protected $objectMap = array(
+    protected $objectMap = [
         'Transfer_AbstractObject' => 'TransferObject',
         'Transfer_AbstractCollection' => 'TransferCollection',
         'Iterator' => 'Iterator',
         'IteratorAggregate' => 'Iterator',
         'ArrayAccess' => 'Iterator',
-    );
+    ];
 
     /**
      * @var array mappings from resource types to synopsis classes
      */
-    protected $resourceMap = array(
+    protected $resourceMap = [
         'bzip2' => 'File',
         'cpdf' => 'File',
         'fdf' => 'File',
         'zlib' => 'File',
         'stream' => 'Stream',
-    );
+    ];
 
     /**
      * creates the fitting synopsis instance for a value

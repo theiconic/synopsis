@@ -12,7 +12,6 @@ use Countable;
  */
 abstract class AbstractSynopsis
 {
-
     /**
      * @var string the type
      */
@@ -46,15 +45,14 @@ abstract class AbstractSynopsis
      */
     public function process($value, $depth)
     {
-        $this->type = strtolower(str_replace('Synopsis', '', str_replace(__NAMESPACE__ . '\\', '', get_class($this))));
+        $parts = explode('\\', get_class($this));
+        $this->type = strtolower(str_replace('Synopsis', '', end($parts)));
 
         if (is_scalar($value)) {
             $this->value = (string) $value;
             $this->length = strlen((string) $value);
-        } else {
-            if ($this->value instanceof Countable) {
-                $this->length = count($value);
-            }
+        } else if ($value instanceof Countable) {
+            $this->length = count($value);
         }
     }
 

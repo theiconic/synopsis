@@ -13,9 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "TheIconic\\Synopsis\\": [
-                "src/"
-            ]
+            "TheIconic\\Synopsis\\": ["src/", "tests/"]
         }
     },
     "require": {}

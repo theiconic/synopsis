@@ -11,7 +11,6 @@ use TheIconic\Synopsis\AbstractSynopsis;
  */
 class TraceSynopsis extends AbstractSynopsis
 {
-
     /**
      * @var string the file
      */
@@ -43,9 +42,13 @@ class TraceSynopsis extends AbstractSynopsis
 
         $this->value = sprintf('%s()', (!empty($value['class'])) ? ($value['class'] . $value['type'] . $value['function']) : $value['function']);
 
-        $this->length = $this->line = $value['line'];
+        if (isset($value['line'])) {
+            $this->length = $this->line = $value['line'];
+        }
 
-        $this->type = $this->file = $value['file'];
+        if (isset($value['file'])) {
+            $this->type = $this->file = $value['file'];
+        }
 
         $this->function = $value['function'];
 

@@ -12,7 +12,6 @@ use ReflectionProperty;
  */
 class ObjectSynopsis extends AbstractSynopsis
 {
-
     /**
      * @var string the namespace
      */

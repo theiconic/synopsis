@@ -11,7 +11,6 @@ use TheIconic\Synopsis\AbstractSynopsis;
  */
 class LogFileFormatter
 {
-
     /**
      * @var int the current level in the tree
      */
@@ -56,7 +55,7 @@ class LogFileFormatter
 
         $this->level++;
         foreach ($synopsis->getChildren() as $k => $v) {
-            $formatted[] = str_repeat(' ', $this->level) . $this->format($v, $k);
+            $formatted[] = str_repeat(' ', $this->level * 2) . $this->format($v, $k);
         }
         $this->level--;
 

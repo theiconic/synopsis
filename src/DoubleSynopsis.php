@@ -9,7 +9,6 @@ namespace TheIconic\Synopsis;
  */
 class DoubleSynopsis extends AbstractSynopsis
 {
-
     /**
      * @see parent::process()
      * @param $value

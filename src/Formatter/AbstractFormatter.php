@@ -10,7 +10,6 @@ use TheIconic\Synopsis\AbstractSynopsis;
  */
 abstract class AbstractFormatter
 {
-
     /**
      * @param AbstractSynopsis $synopsis
      * @param string|null $key

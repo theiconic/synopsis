@@ -3,6 +3,7 @@
 namespace TheIconic\Synopsis;
 
 use TheIconic\Synopsis\Exception\TraceSynopsis;
+use Exception;
 
 /**
  * represents and exception
@@ -11,7 +12,6 @@ use TheIconic\Synopsis\Exception\TraceSynopsis;
  */
 class ExceptionSynopsis extends ObjectSynopsis
 {
-
     /**
      * @var string the file
      */
@@ -41,7 +41,10 @@ class ExceptionSynopsis extends ObjectSynopsis
 
         // we omit the $depth check here on purpose
         foreach ($value->getTrace() as $k => $trace) {
-            $this->addChild(new TraceSynopsis($trace, $depth), '#' . $k);
+            $child = new TraceSynopsis();
+            $child->setFactory($this->getFactory());
+            $child->process($trace, $depth);
+            $this->addChild($child, '#' . $k);
         }
     }
 }

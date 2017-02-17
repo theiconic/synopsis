@@ -9,7 +9,6 @@ namespace TheIconic\Synopsis;
  */
 class BooleanSynopsis extends AbstractSynopsis
 {
-
     /**
      * @see parent::process()
      * @param $value
