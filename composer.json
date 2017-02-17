@@ -14,7 +14,7 @@
     "autoload": {
         "psr-4": {
             "TheIconic\\Synopsis\\": [
-                "src/",
+                "src/"
             ]
         }
     },
