@@ -39,16 +39,6 @@ abstract class AbstractSynopsis
     protected $factory;
 
     /**
-     * constructor, triggers processing of the passed value to properties
-     * @param $value
-     * @param $depth
-     */
-    public function __construct($value, $depth)
-    {
-        $this->process($value, $depth);
-    }
-
-    /**
      * processes passed values to properties
      *
      * @param $value

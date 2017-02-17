@@ -65,7 +65,12 @@ class Factory
             $depth = false;
         }
 
-        return new $className($value, $depth);
+        /** @var AbstractSynopsis $synopsis */
+        $synopsis = new $className();
+        $synopsis->setFactory($this);
+        $synopsis->process($value, $depth);
+
+        return $synopsis;
     }
 
     /**
