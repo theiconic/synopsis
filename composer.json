@@ -11,5 +11,12 @@
             "email": "engineering@theiconic.com.au"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "TheIconic\\Synopsis\\": [
+                "src/",
+            ]
+        }
+    },
     "require": {}
 }
