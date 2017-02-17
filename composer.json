@@ -1,0 +1,15 @@
+{
+    "name": "theiconic/synopsis",
+    "description": "PHP framework to generate a language-agnostic description of PHP objects or values Edit",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "authors": [
+        {
+            "name": "The Iconic",
+            "email": "engineering@theiconic.com.au"
+        }
+    ],
+    "require": {}
+}
