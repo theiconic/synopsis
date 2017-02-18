@@ -3,6 +3,9 @@
 namespace TheIconic\Synopsis;
 
 use Exception;
+use TheIconic\Synopsis\Object\IteratorSynopsis;
+use TheIconic\Synopsis\Resource\FileSynopsis;
+use TheIconic\Synopsis\Resource\StreamSynopsis;
 
 /**
  * the synopsis factory spawns synopsis instances
@@ -12,25 +15,38 @@ use Exception;
 class Factory
 {
     /**
+     * @var array mappings from types to synopsis classes
+     */
+    protected $typeMap = [
+        'null' => NullSynopsis::class,
+        'boolean' => BooleanSynopsis::class,
+        'string' => StringSynopsis::class,
+        'double' => DoubleSynopsis::class,
+        'integer' => IntegerSynopsis::class,
+        'array' => ArraySynopsis::class,
+        'object' => ObjectSynopsis::class,
+        'resource' => ResourceSynopsis::class,
+        'exception' => ExceptionSynopsis::class,
+    ];
+
+    /**
      * @var array mappings from value classes to synopsis classes
      */
     protected $objectMap = [
-        'Transfer_AbstractObject' => 'TransferObject',
-        'Transfer_AbstractCollection' => 'TransferCollection',
-        'Iterator' => 'Iterator',
-        'IteratorAggregate' => 'Iterator',
-        'ArrayAccess' => 'Iterator',
+        'Iterator' => IteratorSynopsis::class,
+        'IteratorAggregate' => IteratorSynopsis::class,
+        'ArrayAccess' => IteratorSynopsis::class,
     ];
 
     /**
      * @var array mappings from resource types to synopsis classes
      */
     protected $resourceMap = [
-        'bzip2' => 'File',
-        'cpdf' => 'File',
-        'fdf' => 'File',
-        'zlib' => 'File',
-        'stream' => 'Stream',
+        'bzip2' => FileSynopsis::class,
+        'cpdf' => FileSynopsis::class,
+        'fdf' => FileSynopsis::class,
+        'zlib' => FileSynopsis::class,
+        'stream' => StreamSynopsis::class,
     ];
 
     /**
@@ -50,13 +66,12 @@ class Factory
             $type = gettype($value);
         }
 
-        if (!class_exists($className = __NAMESPACE__ . '\\' . ucfirst($type) . 'Synopsis')) {
-            $className = __NAMESPACE__ . '\StandardSynopsis';
-        }
-
-        $subspace = ucfirst($type);
-        if (method_exists($this, $method = sprintf('getClassNameFor%s', $subspace))) {
-            $className = call_user_func([$this, $method], $value);
+        if ($type === 'object') {
+            $className = $this->getClassNameForObject($value);
+        } else if ($type === 'resource') {
+            $className = $this->getClassNameForResource($value);
+        } else {
+            $className = $this->getClassNameForType($type);
         }
 
         $depth--;
@@ -73,6 +88,23 @@ class Factory
     }
 
     /**
+     * @param string $type
+     * @return mixed
+     */
+    protected function getClassNameForType(string $type)
+    {
+        if (isset($this->typeMap[$type])) {
+            $className = $this->typeMap[$type];
+
+            if (class_exists($className)) {
+                return $className;
+            }
+        }
+
+        return StandardSynopsis::class;
+    }
+
+    /**
      * get the fitting synopsis class name for the given object
      *
      * @param $value
@@ -81,18 +113,16 @@ class Factory
     protected function getClassNameForObject($value)
     {
         foreach ($this->objectMap as $type => $className) {
-            if (!(is_a($value, $type))) {
+            if (!is_a($value, $type)) {
                 continue;
             }
-
-            $className = __NAMESPACE__ . '\Object\\' . $className . 'Synopsis';
 
             if (class_exists($className)) {
                 return $className;
             }
         }
 
-        return (__NAMESPACE__ . '\ObjectSynopsis');
+        return ObjectSynopsis::class;
     }
 
     /**
@@ -106,14 +136,14 @@ class Factory
         $type = get_resource_type($value);
 
         if (isset($this->resourceMap[$type])) {
-            $className = __NAMESPACE__ . '\Resource\\' . $this->resourceMap[$type] . 'Synopsis';
+            $className = $this->resourceMap[$type];
 
             if (class_exists($className)) {
                 return $className;
             }
         }
 
-        return (__NAMESPACE__ . '\ResourceSynopsis');
+        return ResourceSynopsis::class;
     }
 
     /**
@@ -137,9 +167,23 @@ class Factory
      * @param $className
      * @return $this
      */
-    public function addType($type, $className)
+    public function addObjectType($type, $className)
     {
         $this->objectMap[$type] = $className;
+
+        return $this;
+    }
+
+    /**
+     * register a Synopsis class for a type
+     *
+     * @param $type
+     * @param $className
+     * @return $this
+     */
+    public function addType($type, $className)
+    {
+        $this->typeMap[$type] = $className;
 
         return $this;
     }
