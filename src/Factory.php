@@ -56,7 +56,7 @@ class Factory
      * @param $depth
      * @return mixed
      */
-    public function synopsize($value, $depth)
+    public function synopsize($value, $depth = 3)
     {
         if ($value === null) {
             $type = 'null';
@@ -122,7 +122,7 @@ class Factory
             }
         }
 
-        return ObjectSynopsis::class;
+        return $this->typeMap['object'];
     }
 
     /**
@@ -143,7 +143,7 @@ class Factory
             }
         }
 
-        return ResourceSynopsis::class;
+        return $this->typeMap['resource'];
     }
 
     /**

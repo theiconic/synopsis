@@ -40,10 +40,10 @@ class ObjectSynopsis extends AbstractSynopsis
 
         $this->type = $reflector->getName();
 
-        if (method_exists($value, 'getName')) {
-            $this->value = $value->getName();
-        } elseif (method_exists($value, '__toString')) {
-            $this->value = (string) $value;
+        foreach (['__toSynopsisValue', '__toString', 'getId', 'getName'] as $method) {
+            if (method_exists($value, $method) && is_callable([$value, $method])) {
+                $this->value = (string) call_user_func([$value, $method]);
+            }
         }
     }
 
