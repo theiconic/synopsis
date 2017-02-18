@@ -14,8 +14,12 @@ class TraceSynopsisTest extends TestCase
     public function testProcess()
     {
         $synopsis = $this->getSynopsis(0);
+        $line = __LINE__ - 1;
 
-        $this->assertEquals(__LINE__ - 2, $synopsis->getLine());
+        $this->assertEquals(sprintf('%s->getSynopsis()', __CLASS__), $synopsis->getType());
+        $this->assertEquals(sprintf('%s (%s)', __FILE__, $line), $synopsis->getValue());
+        $this->assertEquals(1, $synopsis->getLength());
+        $this->assertEquals($line, $synopsis->getLine());
         $this->assertEquals(__FILE__, $synopsis->getFile());
         $this->assertEquals('getSynopsis', $synopsis->getFunction());
         $this->assertEquals(__CLASS__, $synopsis->getClass());

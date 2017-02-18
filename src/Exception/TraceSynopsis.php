@@ -40,19 +40,26 @@ class TraceSynopsis extends AbstractSynopsis
     {
         parent::process($value, $depth);
 
-        $this->value = sprintf('%s()', (!empty($value['class'])) ? ($value['class'] . $value['type'] . $value['function']) : $value['function']);
-
-        if (isset($value['line'])) {
-            $this->length = $this->line = $value['line'];
-        }
+        $this->type = sprintf('%s()', (!empty($value['class'])) ? ($value['class'] . $value['type'] . $value['function']) : $value['function']);
 
         if (isset($value['file'])) {
-            $this->type = $this->file = $value['file'];
+            $this->value = $this->file = $value['file'];
+        }
+
+        if (isset($value['line'])) {
+            $this->line = $value['line'];
+            $this->value = sprintf('%s (%d)', $this->file, $this->line);
+        }
+
+        if (!empty($value['class'])) {
+            $this->class = $value['class'];
         }
 
         $this->function = $value['function'];
 
-        $this->class = $value['class'];
+        if (isset($value['args'])) {
+            $this->length = count($value['args']);
+        }
 
         if ($depth) {
             foreach ($value['args'] as $k => $v) {

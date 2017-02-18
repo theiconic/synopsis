@@ -1,7 +1,18 @@
 # synopsis
-PHP framework to generate a language-agnostic description of PHP objects or values
+PHP library to generate a language-agnostic description of PHP objects or values
 
-Badges
+## Purpose
+This library can be used to generate language-agnostic descriptions of
+PHP variables or objects that can then be sent over a transport to
+another system, e.g. for debugging, monitoring and inspection purposes.
+
+It generates a standardised representation can easily be formatted
+in different ways.
+
+E.g. possible use-cases are
+- sending data together with log messages to a logging service
+- sending debug data to a debugging/inspection tool
+- pretty-formatting exceptions including their traces and the arguments in the calls of those traces
 
 ## Setup (via Composer)
 Add a repository entry for this repository in your composer.json
@@ -142,6 +153,28 @@ Custom resource types can be registered via
 ```$php
 $factory->addResourceType(MyClass::$class, MyClassSynopsis::class);
 ```
+
+## Exception Synopsis
+Exceptions and their traces are synopsised in a special way
+adding additional properties to the synopsis objects.
+
+### ExceptionSynopsis
+- **type**: the exception type
+- **value**: the exception message
+- **length**: the length of the stack trace
+- **line**: the line
+- **file**: the file
+- **children**: the synopsised stack trace
+
+### TraceSynopsis
+- **type**: a string representation of the full call
+- **value**: a string representation of the file and line
+- **length**: the number of call parameters
+- **line**: the line
+- **file**: the file
+- **class**: the class name
+- **function**: the function/method name
+- **children**: the synopsised call parameters (if any)
 
 ## Overriding default Synopsis implementations
 To override the behaviour for any of the types, simply implement
