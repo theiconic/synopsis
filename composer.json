@@ -2,8 +2,10 @@
     "name": "theiconic/synopsis",
     "description": "PHP framework to generate a language-agnostic description of PHP objects or values Edit",
     "type": "library",
+    "license": "MIT",
     "require-dev": {
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0",
+        "satooshi/php-coveralls": "^1.0"
     },
     "authors": [
         {
