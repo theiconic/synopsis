@@ -9,7 +9,7 @@ use TheIconic\Synopsis\AbstractSynopsis;
  *
  * @package TheIconic\Synopsis\Formatter
  */
-class LogFileFormatter
+class LogFileFormatter extends AbstractFormatter
 {
     /**
      * @var int the current level in the tree

@@ -9,7 +9,7 @@ use TheIconic\Synopsis\AbstractSynopsis;
  *
  * @package TheIconic\Synopsis\Formatter
  */
-class ArrayFormatter
+class ArrayFormatter extends AbstractFormatter
 {
     /**
      * formats a synopsis object

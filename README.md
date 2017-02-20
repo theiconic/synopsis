@@ -6,13 +6,14 @@ This library can be used to generate language-agnostic descriptions of
 PHP variables or objects that can then be sent over a transport to
 another system, e.g. for debugging, monitoring and inspection purposes.
 
-It generates a standardised representation can easily be formatted
+It generates a standardised representation that can easily be formatted
 in different ways.
 
 E.g. possible use-cases are
 - sending data together with log messages to a logging service
 - sending debug data to a debugging/inspection tool
 - pretty-formatting exceptions including their traces and the arguments in the calls of those traces
+- output data on different channels (e.g. terminal, web, etc.) via standardised formatters
 
 ## Setup (via Composer)
 Add a repository entry for this repository in your composer.json
@@ -157,6 +158,8 @@ $factory->addResourceType(MyClass::$class, MyClassSynopsis::class);
 ## Exception Synopsis
 Exceptions and their traces are synopsised in a special way
 adding additional properties to the synopsis objects.
+
+These can be utilised in special Exception formatters.
 
 ### ExceptionSynopsis
 - **type**: the exception type
