@@ -186,3 +186,6 @@ register it with the factory via e.g.
 ```$php
 $factory->addType('string', MyStringSynopsis::class);
 ```
+
+## License
+THE ICONIC Synopsis library for PHP is released under the MIT License.
