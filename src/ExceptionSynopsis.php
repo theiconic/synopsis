@@ -47,4 +47,15 @@ class ExceptionSynopsis extends ObjectSynopsis
             $this->addChild($child, '#' . $k);
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getDetails()
+    {
+        return [
+            'line' => $this->line,
+            'file' => $this->file,
+        ];
+    }
 }

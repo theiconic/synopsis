@@ -57,6 +57,14 @@ abstract class AbstractSynopsis
     }
 
     /**
+     * @return array
+     */
+    public function getDetails()
+    {
+        return [];
+    }
+
+    /**
      * get the type
      *
      * @return string

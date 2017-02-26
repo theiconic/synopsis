@@ -18,19 +18,19 @@ class ArrayFormatter extends AbstractFormatter
      * @param string|null $key
      * @return string
      */
-    public function format(AbstractSynopsis $synopsis)
+    public function format(AbstractSynopsis $synopsis, $key = null)
     {
-        $formatted = [
+        $formatted = array_merge([
             'type' => $synopsis->getType(),
             'length' => $synopsis->getLength(),
             'value' => $synopsis->getValue(),
-        ];
+        ], $synopsis->getDetails());
 
         if ($synopsis->hasChildren()) {
             $formatted['children'] = [];
 
             foreach ($synopsis->getChildren() as $k => $v) {
-                $formatted['children'][$k] = $this->format($v);
+                $formatted['children'][$k] = $this->format($v, $k);
             }
         }
 
