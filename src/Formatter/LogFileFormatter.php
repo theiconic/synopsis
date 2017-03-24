@@ -27,14 +27,10 @@ class LogFileFormatter extends AbstractFormatter
     {
         $formatted = array();
 
-        if (method_exists($this, $method = sprintf('format%s', get_class($synopsis)))) {
-            $formatted[] = call_user_func(array($this, $method), $synopsis, $key);
+        if ($synopsis->hasChildren()) {
+            $formatted[] = $this->formatTreeSynopsis($synopsis, $key);
         } else {
-            if ($synopsis->hasChildren()) {
-                $formatted[] = $this->formatTreeSynopsis($synopsis, $key);
-            } else {
-                $formatted[] = $this->formatScalarSynopsis($synopsis, $key);
-            }
+            $formatted[] = $this->formatScalarSynopsis($synopsis, $key);
         }
 
         return implode(PHP_EOL, $formatted);
