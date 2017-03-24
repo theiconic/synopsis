@@ -4,10 +4,6 @@ namespace TheIconic\Synopsis;
 
 use PHPUnit\Framework\TestCase;
 use Exception;
-use TheIconic\Synopsis\AbstractSynopsis;
-use TheIconic\Synopsis\ArraySynopsis;
-use TheIconic\Synopsis\Factory;
-use TheIconic\Synopsis\StringSynopsis;
 
 class StandardSynopsisTest extends TestCase
 {
@@ -27,13 +23,25 @@ class StandardSynopsisTest extends TestCase
                 4,
                 'integer',
                 1,
-                4
+                '4',
             ],
             [
                 2.3,
                 'double',
                 3,
-                2.3
+                '2.3',
+            ],
+            [
+                null,
+                'null',
+                0,
+                '',
+            ],
+            [
+                new Exception('testException'),
+                'exception',
+                0,
+                '',
             ]
         ];
     }
@@ -46,9 +54,9 @@ class StandardSynopsisTest extends TestCase
         $synopsis = new StandardSynopsis();
         $synopsis->process($original, 3);
 
-        $this->assertEquals($type, $synopsis->getType());
-        $this->assertEquals($length, $synopsis->getLength());
-        $this->assertEquals($value, $synopsis->getValue());
+        $this->assertSame($type, $synopsis->getType());
+        $this->assertSame($length, $synopsis->getLength());
+        $this->assertSame($value, $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
         $this->assertNull($synopsis->getChildren());
     }

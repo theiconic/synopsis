@@ -4,14 +4,15 @@ namespace TheIconic\Synopsis;
 
 use PHPUnit\Framework\TestCase;
 use Exception;
-use TheIconic\Synopsis\AbstractSynopsis;
-use TheIconic\Synopsis\ArraySynopsis;
 use TheIconic\Synopsis\Exception\TraceSynopsis;
-use TheIconic\Synopsis\Factory;
-use TheIconic\Synopsis\StringSynopsis;
 
 class ExceptionSynopsisTest extends TestCase
 {
+    /**
+     * @var int
+     */
+    protected $line;
+
     /**
      *
      */
@@ -29,10 +30,14 @@ class ExceptionSynopsisTest extends TestCase
 
         $this->assertInstanceOf(TraceSynopsis::class, $children['#0']);
         $this->assertInstanceOf(TraceSynopsis::class, $children['#11']);
+
+        $this->assertSame([
+            'line' => $this->line,
+            'file' => __FILE__,
+        ], $synopsis->getDetails());
     }
 
     /**
-     * @param int $index
      * @return ExceptionSynopsis
      */
     protected function getSynopsis()
@@ -40,6 +45,7 @@ class ExceptionSynopsisTest extends TestCase
         $synopsis = new ExceptionSynopsis();
 
         try {
+            $this->line = __LINE__ + 1;
             throw new Exception('Test Exception');
         } catch (Exception $e) {
             $synopsis->process($e, 3);
