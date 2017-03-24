@@ -58,26 +58,12 @@ class Factory
      */
     public function synopsize($value, $depth = 3)
     {
-        if ($value === null) {
-            $type = 'null';
-        } else if ($value instanceof Exception) {
-            $type = 'exception';
-        } else {
-            $type = gettype($value);
-        }
-
-        if ($type === 'object') {
-            $className = $this->getClassNameForObject($value);
-        } else if ($type === 'resource') {
-            $className = $this->getClassNameForResource($value);
-        } else {
-            $className = $this->getClassNameForType($type);
-        }
-
         $depth--;
         if ($depth <= 0) {
             $depth = false;
         }
+
+        $className = $this->getClassName($value);
 
         /** @var AbstractSynopsis $synopsis */
         $synopsis = new $className();
@@ -88,8 +74,48 @@ class Factory
     }
 
     /**
+     * get the synopsis classname to use for processing value
+     *
+     * @param $value
+     * @return string
+     */
+    protected function getClassName($value)
+    {
+        $type = $this->detectType($value);
+
+        if ($type === 'object') {
+            return $this->getClassNameForObject($value);
+        }
+
+        if ($type === 'resource') {
+            return $this->getClassNameForResource($value);
+        }
+
+        return $this->getClassNameForType($type);
+    }
+
+    /**
+     * detect the primitive type of value
+     *
+     * @param $value
+     * @return string
+     */
+    protected function detectType($value)
+    {
+        if ($value === null) {
+            return 'null';
+        }
+
+        if ($value instanceof Exception) {
+            return 'exception';
+        }
+
+        return gettype($value);
+    }
+
+    /**
      * @param string $type
-     * @return mixed
+     * @return string
      */
     protected function getClassNameForType(string $type)
     {
@@ -110,7 +136,7 @@ class Factory
      * @param $value
      * @return string
      */
-    protected function getClassNameForObject($value)
+    protected function getClassNameForObject($value): string
     {
         foreach ($this->objectMap as $type => $className) {
             if (!is_a($value, $type)) {
@@ -131,7 +157,7 @@ class Factory
      * @param $value
      * @return string
      */
-    protected function getClassNameForResource($value)
+    protected function getClassNameForResource($value): string
     {
         $type = get_resource_type($value);
 
