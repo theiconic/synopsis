@@ -2,6 +2,7 @@
 PHP library to generate a language-agnostic description of PHP objects or values
 
 [![Build Status](https://travis-ci.org/theiconic/synopsis.svg?branch=master)](https://travis-ci.org/theiconic/synopsis)
+[![Coverage Status](https://coveralls.io/repos/github/theiconic/synopsis/badge.svg?branch=master)](https://coveralls.io/github/theiconic/synopsis?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theiconic/synopsis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/theiconic/synopsis/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/theiconic/synopsis/v/stable)](https://packagist.org/packages/theiconic/synopsis)
 [![Total Downloads](https://poser.pugx.org/theiconic/synopsis/downloads)](https://packagist.org/packages/theiconic/synopsis)
