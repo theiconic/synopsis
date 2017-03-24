@@ -40,11 +40,21 @@ class ObjectSynopsis extends AbstractSynopsis
 
         $this->type = $reflector->name;
 
+        $this->value = $this->generateValue($value);
+    }
+
+    /**
+     * @return string
+     */
+    protected function generateValue($value)
+    {
         foreach (['__toSynopsisValue', '__toString', 'getId', 'getName'] as $method) {
             if (method_exists($value, $method) && is_callable([$value, $method])) {
-                $this->value = (string) call_user_func([$value, $method]);
+                return (string) call_user_func([$value, $method]);
             }
         }
+
+        return '';
     }
 
     /**
