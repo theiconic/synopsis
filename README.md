@@ -1,6 +1,13 @@
 # synopsis
 PHP library to generate a language-agnostic description of PHP objects or values
 
+[![Build Status](https://travis-ci.org/theiconic/synopsis.svg?branch=master)](https://travis-ci.org/theiconic/synopsis)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theiconic/synopsis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/theiconic/synopsis/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/theiconic/synopsis/v/stable)](https://packagist.org/packages/theiconic/synopsis)
+[![Total Downloads](https://poser.pugx.org/theiconic/synopsis/downloads)](https://packagist.org/packages/theiconic/synopsis)
+[![License](https://poser.pugx.org/theiconic/synopsis/license)](https://packagist.org/packages/theiconic/synopsis)
+[![Dependency Status](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b)
+
 ## Purpose
 This library can be used to generate language-agnostic descriptions of
 PHP variables or objects that can then be sent over a transport to
