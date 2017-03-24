@@ -34,6 +34,22 @@ class TraceSynopsisTest extends TestCase
         $this->assertEquals(1, $firstChild->getLength());
     }
 
+    public function testClasslessTrace()
+    {
+        $synopsis = new TraceSynopsis();
+        $synopsis->process([
+            'file' => 'abc',
+            'line' => 10,
+            'function' => 'func',
+            'args' => ['arg1'],
+        ], 2);
+
+        $this->assertEquals('abc', $synopsis->getFile());
+        $this->assertEquals('10', $synopsis->getLine());
+        $this->assertEquals('func', $synopsis->getFunction());
+        $this->assertEquals('', $synopsis->getClass());
+    }
+
     /**
      * @param int $index
      * @return TraceSynopsis

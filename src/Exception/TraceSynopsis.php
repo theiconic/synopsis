@@ -77,7 +77,7 @@ class TraceSynopsis extends AbstractSynopsis
      */
     protected function generateValue(array $value): string
     {
-        $file = $value['file'] ?? 'unkown file';
+        $file = $value['file'] ?? 'unknown file';
 
         if (!array_key_exists('line', $value)) {
             return $file;
