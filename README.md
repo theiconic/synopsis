@@ -7,7 +7,7 @@ PHP library to generate a language-agnostic description of PHP objects or values
 [![Latest Stable Version](https://poser.pugx.org/theiconic/synopsis/v/stable)](https://packagist.org/packages/theiconic/synopsis)
 [![Total Downloads](https://poser.pugx.org/theiconic/synopsis/downloads)](https://packagist.org/packages/theiconic/synopsis)
 [![License](https://poser.pugx.org/theiconic/synopsis/license)](https://packagist.org/packages/theiconic/synopsis)
-[![Dependency Status](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b)
+[![Dependency Status](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b)
 
 ## Purpose
 This library can be used to generate language-agnostic descriptions of
