@@ -1,6 +1,14 @@
 # synopsis
 PHP library to generate a language-agnostic description of PHP objects or values
 
+[![Build Status](https://travis-ci.org/theiconic/synopsis.svg?branch=master)](https://travis-ci.org/theiconic/synopsis)
+[![Coverage Status](https://coveralls.io/repos/github/theiconic/synopsis/badge.svg?branch=master)](https://coveralls.io/github/theiconic/synopsis?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theiconic/synopsis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/theiconic/synopsis/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/theiconic/synopsis/v/stable)](https://packagist.org/packages/theiconic/synopsis)
+[![Total Downloads](https://poser.pugx.org/theiconic/synopsis/downloads)](https://packagist.org/packages/theiconic/synopsis)
+[![License](https://poser.pugx.org/theiconic/synopsis/license)](https://packagist.org/packages/theiconic/synopsis)
+[![Dependency Status](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/58d46eb4dcaf9e0045d9728b)
+
 ## Purpose
 This library can be used to generate language-agnostic descriptions of
 PHP variables or objects that can then be sent over a transport to
@@ -16,18 +24,9 @@ E.g. possible use-cases are
 - output data on different channels (e.g. terminal, web, etc.) via standardised formatters
 
 ## Setup (via Composer)
-Add a repository entry for this repository in your composer.json
-```$json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/theiconic/synopsis"
-    }
-]
-```
-Then import the library
+Simply import the library in composer
 ```$bash
-composer request theiconic/synopsis
+composer require theiconic/synopsis
 ```
 ## Basic Usage
 You will need to start off by instantiating the factory
