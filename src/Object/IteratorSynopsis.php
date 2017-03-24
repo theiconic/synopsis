@@ -24,8 +24,12 @@ class IteratorSynopsis extends ObjectSynopsis
             foreach ($value as $k => $v) {
                 $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
             }
+            $this->length = count($this->children);
+        } else {
+            $this->length = 0;
+            foreach ($value as $k => $v) {
+                $this->length++;
+            }
         }
-
-        $this->length = count($this->children);
     }
 }
