@@ -51,13 +51,24 @@ class TraceSynopsis extends AbstractSynopsis
 
         if (!empty($value['args'])) {
             $this->length = count($value['args']);
+            $this->processArgs($value['args'], $depth);
+        }
+    }
 
-            if ($depth) {
-                foreach ($value['args'] as $k => $v) {
-                    $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
-                }
+    /**
+     * @param array $args
+     * @param $depth
+     * @return $this
+     */
+    protected function processArgs(array $args, $depth)
+    {
+        if ($depth) {
+            foreach ($args as $k => $v) {
+                $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
             }
         }
+
+        return $this;
     }
 
     /**
