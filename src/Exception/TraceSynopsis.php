@@ -40,24 +40,16 @@ class TraceSynopsis extends AbstractSynopsis
     {
         parent::process($value, $depth);
 
-        $this->type = sprintf('%s()', (!empty($value['class'])) ? ($value['class'] . $value['type'] . $value['function']) : $value['function']);
+        $this->type = sprintf('%s()', $this->generateType($value));
 
-        if (isset($value['file'])) {
-            $this->value = $this->file = $value['file'];
-        }
+        $this->value = $this->generateValue($value);
 
-        if (isset($value['line'])) {
-            $this->line = $value['line'];
-            $this->value = sprintf('%s (%d)', $this->file, $this->line);
-        }
+        $this->file = $value['file'] ?? '';
+        $this->line = $value['line'] ?? '';
+        $this->class = $value['class'] ?? '';
+        $this->function = $value['function'] ?? '';
 
-        if (!empty($value['class'])) {
-            $this->class = $value['class'];
-        }
-
-        $this->function = $value['function'];
-
-        if (isset($value['args'])) {
+        if (!empty($value['args'])) {
             $this->length = count($value['args']);
 
             if ($depth) {
@@ -66,6 +58,34 @@ class TraceSynopsis extends AbstractSynopsis
                 }
             }
         }
+    }
+
+    /**
+     * @param array $value
+     * @return string
+     */
+    protected function generateValue(array $value): string
+    {
+        $file = $value['file'] ?? 'unkown file';
+
+        if (!array_key_exists('line', $value)) {
+            return $file;
+        }
+
+        return sprintf('%s (%d)', $file, $value['line']);
+    }
+
+    /**
+     * @param array $value
+     * @return string
+     */
+    protected function generateType(array $value): string
+    {
+        if (empty($value['class'])) {
+            return $value['function'];
+        }
+
+        return $value['class'] . $value['type'] . $value['function'];
     }
 
     /**
