@@ -30,8 +30,10 @@ class StandardSynopsis extends AbstractSynopsis
     {
         if ($value === null) {
             $type = 'null';
-        } else if ($value instanceof Exception) {
-            $type = 'exception';
+        } else if (is_object($value)) {
+            $type = get_class($value);
+        } else if (is_resource($value)) {
+            $type = sprintf('%s resource', get_resource_type($value));
         } else {
             $type = gettype($value);
         }

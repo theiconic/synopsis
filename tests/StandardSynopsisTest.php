@@ -13,36 +13,43 @@ class StandardSynopsisTest extends TestCase
     public function provider()
     {
         return [
-            [
+            'Hello World!' => [
                 'Hello World!',
                 'string',
                 12,
                 'Hello World!',
             ],
-            [
+            '4' => [
                 4,
                 'integer',
                 1,
                 '4',
             ],
-            [
+            '2.3' => [
                 2.3,
                 'double',
                 3,
                 '2.3',
             ],
-            [
+            'null' => [
                 null,
                 'null',
                 0,
                 '',
             ],
-            [
+            'exception' => [
                 new Exception('testException'),
-                'exception',
+                'Exception',
                 0,
                 '',
-            ]
+            ],
+            'stdin' => [
+                STDIN,
+                'stream resource',
+                0,
+                '',
+            ],
+
         ];
     }
 
