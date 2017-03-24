@@ -60,7 +60,7 @@ class Factory
     {
         if ($value === null) {
             $type = 'null';
-        } elseif ($value instanceof Exception) {
+        } else if ($value instanceof Exception) {
             $type = 'exception';
         } else {
             $type = gettype($value);
