@@ -9,19 +9,6 @@ use TheIconic\Synopsis\ResourceSynopsis;
  *
  * @package TheIconic\Synopsis\Object
  */
-class FileSynopsis extends ResourceSynopsis
+class FileSynopsis extends StreamSynopsis
 {
-    /**
-     * @param $value
-     * @param $depth
-     */
-    public function process($value, $depth)
-    {
-        parent::process($value, $depth);
-
-        $meta = stream_get_meta_data($value);
-
-        $this->value = $meta['uri'];
-        $this->length = strlen($this->value);
-    }
 }
