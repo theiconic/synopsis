@@ -38,7 +38,7 @@ class ObjectSynopsis extends AbstractSynopsis
             $this->length = count($this->children);
         }
 
-        $this->type = $reflector->getName();
+        $this->type = $reflector->name;
 
         foreach (['__toSynopsisValue', '__toString', 'getId', 'getName'] as $method) {
             if (method_exists($value, $method) && is_callable([$value, $method])) {
