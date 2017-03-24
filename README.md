@@ -24,18 +24,9 @@ E.g. possible use-cases are
 - output data on different channels (e.g. terminal, web, etc.) via standardised formatters
 
 ## Setup (via Composer)
-Add a repository entry for this repository in your composer.json
-```$json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/theiconic/synopsis"
-    }
-]
-```
-Then import the library
+Simply import the library in composer
 ```$bash
-composer request theiconic/synopsis
+composer require theiconic/synopsis
 ```
 ## Basic Usage
 You will need to start off by instantiating the factory
