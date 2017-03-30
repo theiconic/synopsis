@@ -1,6 +1,6 @@
 {
     "name": "theiconic/synopsis",
-    "description": "PHP framework to generate a language-agnostic description of PHP objects or values Edit",
+    "description": "PHP library to generate a language-agnostic description of PHP objects or values Edit",
     "type": "library",
     "license": "MIT",
     "require-dev": {
