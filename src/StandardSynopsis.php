@@ -2,8 +2,6 @@
 
 namespace TheIconic\Synopsis;
 
-use Exception;
-
 /**
  * represents anything not represented by any of the other synopsis classes
  *

@@ -2,8 +2,6 @@
 
 namespace TheIconic\Synopsis\Resource;
 
-use TheIconic\Synopsis\ResourceSynopsis;
-
 /**
  * represents a file resource
  *
