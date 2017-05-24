@@ -3,7 +3,6 @@
 namespace TheIconic\Synopsis;
 
 use TheIconic\Synopsis\Exception\TraceSynopsis;
-use Exception;
 
 /**
  * represents and exception
