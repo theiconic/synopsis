@@ -3,7 +3,6 @@
 namespace TheIconic\Synopsis;
 
 use Countable;
-use Traversable;
 
 /**
  * Represents a synopsis of a value (or object), that is a description of the value useful
