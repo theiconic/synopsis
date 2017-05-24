@@ -42,8 +42,6 @@ abstract class AbstractSynopsis
      *
      * @param $value
      * @param $depth
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process($value, $depth)
     {
