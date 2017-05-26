@@ -24,6 +24,13 @@ class TraceSynopsisTest extends TestCase
         $this->assertEquals('getSynopsis', $synopsis->getFunction());
         $this->assertEquals(__CLASS__, $synopsis->getClass());
 
+        $this->assertSame([
+            'line' => $line,
+            'file' => __FILE__,
+            'class' => __CLASS__,
+            'function' => 'getSynopsis',
+        ], $synopsis->getDetails());
+
         /** @var AbstractSynopsis $firstChild */
         $firstChild = $synopsis->getChildren()[0];
 

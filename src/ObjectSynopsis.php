@@ -13,11 +13,6 @@ use ReflectionProperty;
 class ObjectSynopsis extends AbstractSynopsis
 {
     /**
-     * @var string the namespace
-     */
-    protected $namespace;
-
-    /**
      * @see parent::process()
      * @param $value
      * @param $depth
@@ -55,15 +50,5 @@ class ObjectSynopsis extends AbstractSynopsis
         }
 
         return '';
-    }
-
-    /**
-     * get the namespace
-     *
-     * @return string
-     */
-    public function getNamespace()
-    {
-        return $this->namespace;
     }
 }
