@@ -52,22 +52,29 @@ abstract class AbstractSynopsis
         if (is_scalar($value)) {
             $this->value = (string) $value;
             $this->length = strlen((string) $value);
-        } else if ($value instanceof Countable) {
+        }
+
+        if ($value instanceof Countable) {
             $this->length = count($value);
         }
 
         if ($value instanceof Traversable) {
-            if ($depth) {
-                $this->children = [];
-                foreach ($value as $k => $v) {
-                    $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
-                }
-                $this->length = count($this->children);
-            } else {
-                $this->length = 0;
-                foreach ($value as $k => $v) {
-                    $this->length++;
-                }
+            $this->handleTraversable($value, $depth);
+        }
+    }
+
+    protected function handleTraversable(Traversable $value, $depth)
+    {
+        if ($depth) {
+            $this->children = [];
+            foreach ($value as $k => $v) {
+                $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
+            }
+            $this->length = count($this->children);
+        } else {
+            $this->length = 0;
+            foreach ($value as $k => $v) {
+                $this->length++;
             }
         }
     }
