@@ -9,30 +9,29 @@ use TheIconic\Synopsis\Exception\TraceSynopsis;
 class ExceptionSynopsisTest extends TestCase
 {
     /**
-     * @var int
-     */
-    protected $line;
-
-    /**
      *
      */
     public function testProcess()
     {
-        $synopsis = $this->getSynopsis();
+        $exception = new Exception('Test Exception');
+        $synopsis = $this->getSynopsis($exception);
+        $traceLines = count($exception->getTrace());
+        $line = $exception->getLine();
 
         $this->assertEquals('Exception', $synopsis->getType());
-        $this->assertEquals(12, $synopsis->getLength());
+        $this->assertEquals($traceLines, $synopsis->getLength());
         $this->assertEquals('Test Exception', $synopsis->getValue());
         $this->assertTrue($synopsis->hasChildren());
 
         $children = $synopsis->getChildren();
-        $this->assertCount(12, $children);
+        $this->assertCount($traceLines, $children);
 
-        $this->assertInstanceOf(TraceSynopsis::class, $children['#0']);
-        $this->assertInstanceOf(TraceSynopsis::class, $children['#11']);
+        foreach ($children as $child) {
+            $this->assertInstanceOf(TraceSynopsis::class, $child);
+        }
 
         $this->assertSame([
-            'line' => $this->line,
+            'line' => $line,
             'file' => __FILE__,
         ], $synopsis->getDetails());
     }
@@ -40,16 +39,10 @@ class ExceptionSynopsisTest extends TestCase
     /**
      * @return ExceptionSynopsis
      */
-    protected function getSynopsis()
+    protected function getSynopsis($exception)
     {
         $synopsis = new ExceptionSynopsis();
-
-        try {
-            $this->line = __LINE__ + 1;
-            throw new Exception('Test Exception');
-        } catch (Exception $e) {
-            $synopsis->process($e, 3);
-        }
+        $synopsis->process($exception, 3);
 
         return $synopsis;
     }
