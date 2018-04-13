@@ -3,6 +3,7 @@
 namespace TheIconic\Synopsis;
 
 use Countable;
+use Traversable;
 
 /**
  * Represents a synopsis of a value (or object), that is a description of the value useful
@@ -53,6 +54,21 @@ abstract class AbstractSynopsis
             $this->length = strlen((string) $value);
         } else if ($value instanceof Countable) {
             $this->length = count($value);
+        }
+
+        if ($value instanceof Traversable) {
+            if ($depth) {
+                $this->children = [];
+                foreach ($value as $k => $v) {
+                    $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
+                }
+                $this->length = count($this->children);
+            } else {
+                $this->length = 0;
+                foreach ($value as $k => $v) {
+                    $this->length++;
+                }
+            }
         }
     }
 

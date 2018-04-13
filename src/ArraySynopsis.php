@@ -19,6 +19,7 @@ class ArraySynopsis extends AbstractSynopsis
         parent::process($value, $depth);
 
         if ($depth) {
+            $this->children = [];
             foreach ($value as $k => $v) {
                 $this->addChild($this->getFactory()->synopsize($v, $depth), $k);
             }
