@@ -25,7 +25,6 @@ class ArraySynopsis extends AbstractSynopsis
             }
         }
 
-        $this->length = count($value);
         $this->value = '';
     }
 }

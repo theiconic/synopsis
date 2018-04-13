@@ -48,7 +48,6 @@ abstract class AbstractSynopsis
     {
         $parts = explode('\\', get_class($this));
         $this->type = strtolower(str_replace('Synopsis', '', end($parts)));
-        $this->length = 0;
 
         if (is_scalar($value)) {
             $this->value = (string) $value;
