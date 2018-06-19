@@ -6,6 +6,9 @@
     stopOnFailure="false"
     verbose="true"
     bootstrap="vendor/autoload.php">
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+    </logging>
 
     <php>
         <ini name="memory_limit" value="-1"/>
