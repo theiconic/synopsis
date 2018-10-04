@@ -30,11 +30,11 @@ composer require theiconic/synopsis
 ```
 ## Basic Usage
 You will need to start off by instantiating the factory
-```$php
+```php
 $factory = new TheIconic\Synopsis\Factory();
 ```
 Now you can synopsise any value
-```$php
+```php
 class MyClass
 {
     public $myProp = 1;
@@ -55,7 +55,7 @@ instance which describes the passed value.
 
 Now use one of the formatters to format that data in a way
 that you can send over a transport or use by other components.
-```$php
+```php
 $formatter = new TheIconic\Synopsis\Formatter\ArrayFormatter();
 $formatter->format($objectSynopsis);
 /*
@@ -107,7 +107,7 @@ If so, then the special Synopsis type is used to synopsise the
 object and the result entirely depends on its implementation.
 
 Custom object types can be registered via
-```$php
+```php
 $factory->addObjectType(MyClass::$class, MyClassSynopsis::class);
 ```
 
@@ -150,7 +150,7 @@ and streams and they will use `stream_get_meta_data()` to determine
 the resource uri and use it as the **value**.
 
 Custom resource types can be registered via
-```$php
+```php
 $factory->addResourceType(MyClass::$class, MyClassSynopsis::class);
 ```
 
@@ -182,7 +182,7 @@ These can be utilised in special Exception formatters.
 To override the behaviour for any of the types, simply implement
 your own Synopsis class (inheriting from `AbstractSynopsis`) and
 register it with the factory via e.g.
-```$php
+```php
 $factory->addType('string', MyStringSynopsis::class);
 ```
 
