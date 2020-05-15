@@ -65,6 +65,6 @@ class StandardSynopsisTest extends TestCase
         $this->assertSame($length, $synopsis->getLength());
         $this->assertSame($value, $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

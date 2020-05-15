@@ -23,6 +23,6 @@ class DoubleSynopsisTest extends TestCase
         $this->assertEquals(3, $synopsis->getLength());
         $this->assertEquals(3.4, $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

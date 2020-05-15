@@ -31,7 +31,7 @@ abstract class AbstractSynopsis
     /**
      * @var array the kiddos
      */
-    protected $children;
+    protected $children = [];
 
     /**
      * @var Factory the synopsis factory (used for cascaded creation of synopsises)

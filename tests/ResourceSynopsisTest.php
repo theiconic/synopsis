@@ -23,6 +23,6 @@ class ResourceSynopsisTest extends TestCase
         $this->assertEquals(0, $synopsis->getLength());
         $this->assertEquals('', $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

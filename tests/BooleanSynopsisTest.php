@@ -23,6 +23,6 @@ class BooleanSynopsisTest extends TestCase
         $this->assertEquals(1, $synopsis->getLength());
         $this->assertEquals('true', $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

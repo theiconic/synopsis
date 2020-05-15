@@ -23,6 +23,6 @@ class FileSynopsisTest extends TestCase
         $this->assertEquals(11, $synopsis->getLength());
         $this->assertEquals('php://stdin', $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

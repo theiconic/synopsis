@@ -23,6 +23,6 @@ class NullSynopsisTest extends TestCase
         $this->assertEquals(0, $synopsis->getLength());
         $this->assertEquals(null, $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

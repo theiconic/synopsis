@@ -23,6 +23,6 @@ class StringSynopsisTest extends TestCase
         $this->assertEquals(12, $synopsis->getLength());
         $this->assertEquals('Hello World!', $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }

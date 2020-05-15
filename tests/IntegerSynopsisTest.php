@@ -23,6 +23,6 @@ class IntegerSynopsisTest extends TestCase
         $this->assertEquals(1, $synopsis->getLength());
         $this->assertEquals(3, $synopsis->getValue());
         $this->assertFalse($synopsis->hasChildren());
-        $this->assertNull($synopsis->getChildren());
+        $this->assertEquals([], $synopsis->getChildren());
     }
 }
